@@ -1,0 +1,6 @@
+
+/*SELECT N, IF(P IS NULL, 'Root', IF(B.N IN (SELECT P FROM BST), 'Inner', 'Leaf'))*/ 
+SELECT N, IF(P IS NULL, 'Root', IF(B.N NOT IN (SELECT P FROM BST where P is not null), 'Leaf', 'Inner')) 
+FROM BST AS B 
+ORDER BY N
+/*SELECT N, IF(P IS NULL,'Root',IF((SELECT COUNT(*) FROM BST WHERE P=B.N)>0,'Inner','Leaf')) FROM BST AS B ORDER BY N*/
